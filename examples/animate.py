@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 
-PORT_NAME = '/dev/ttyUSB0'
+PORT_NAME = '/dev/tty.usbserial-0001'
 DMAX = 4000
 IMIN = 0
 IMAX = 50
