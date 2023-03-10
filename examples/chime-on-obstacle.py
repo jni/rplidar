@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import chime
+from psygnal import throttled
 
 from rplidar import RPLidar, RPLidarException
 
@@ -9,6 +10,10 @@ chime.theme('mario')
 lidar = RPLidar('/dev/tty.usbserial-0001')
 fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
 scan_data = np.zeros((2000, 4), dtype=float)
+
+
+chime_info = throttled(chime.info, 1000)
+
 
 try:
     i = 0
@@ -19,7 +24,8 @@ try:
             i += 1
             if (0 <= angle_deg <= 30
                     or 330 <= angle_deg <= 360) and distance_mm < 2100:
-                chime.info()
+                chime_info()
+
 except RPLidarException as exc:
     lidar.logger.debug(str(exc))
 except KeyboardInterrupt:
