@@ -7,6 +7,7 @@ from psygnal import throttled
 from rplidar import RPLidar, RPLidarException
 
 chime.theme('mario')
+chime.success()
 lidar = RPLidar('/dev/tty.usbserial-0001')
 fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
 scan_data = np.zeros((2000, 4), dtype=float)
